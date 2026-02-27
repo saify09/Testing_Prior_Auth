@@ -56,4 +56,4 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          git push https://SaifuddinHanif:$HF_TOKEN@huggingface.co/spaces/SaifuddinHanif/UHC-Auth-Prior-Prototype-Agent main
+          git push --force https://SaifuddinHanif:$HF_TOKEN@huggingface.co/spaces/SaifuddinHanif/UHC-Auth-Prior-Prototype-Agent main
