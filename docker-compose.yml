@@ -1,0 +1,100 @@
+version: '3.8'
+
+services:
+  auth-service:
+    build:
+      context: .
+      dockerfile: src/infrastructure/docker/Dockerfile.auth
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+
+  planner-agent:
+    build:
+      context: .
+      dockerfile: src/infrastructure/docker/Dockerfile.planner
+    ports:
+      - "5001:5001"
+    environment:
+      - PORT=5001
+      - DENIAL_URL=https://denial-prediction-agent:5003
+      - FHIR_AGENT_URL=https://fhir-agent:5004
+      - EDI_AGENT_URL=https://edi-agent:5005
+      - DATABASE_URL=sqlite:////app/app.db
+    volumes:
+      - ./app.db:/app/app.db
+
+  validation-agent:
+    build:
+      context: .
+      dockerfile: src/infrastructure/docker/Dockerfile.validation
+    ports:
+      - "5002:5002"
+    environment:
+      - PORT=5002
+      - PLANNER_URL=https://planner-agent:5001
+      - AUTH_URL=https://auth-service:5000
+
+  denial-prediction-agent:
+    build:
+      context: .
+      dockerfile: src/infrastructure/docker/Dockerfile.denial
+    ports:
+      - "5003:5003"
+    environment:
+      - PORT=5003
+
+  fhir-agent:
+    build:
+      context: .
+      dockerfile: src/infrastructure/docker/Dockerfile.fhir
+    ports:
+      - "5004:5004"
+    environment:
+      - PORT=5004
+
+  edi-agent:
+    build:
+      context: .
+      dockerfile: src/infrastructure/docker/Dockerfile.edi
+    ports:
+      - "5005:5005"
+    environment:
+      - PORT=5005
+
+  monitoring-agent:
+    build:
+      context: .
+      dockerfile: src/infrastructure/docker/Dockerfile.monitoring
+    ports:
+      - "5006:5006"
+    environment:
+      - PORT=5006
+      - DATABASE_URL=sqlite:////app/app.db
+    volumes:
+      - ./app.db:/app/app.db
+
+  explanation-agent:
+    build:
+      context: .
+      dockerfile: src/infrastructure/docker/Dockerfile.explanation
+    ports:
+      - "5007:5007"
+    environment:
+      - PORT=5007
+
+  frontend:
+    build:
+      context: .
+      dockerfile: src/infrastructure/docker/Dockerfile.frontend
+    ports:
+      - "8501:8501"
+    environment:
+      - VALIDATION_URL=https://validation-agent:5002
+      - MONITORING_URL=https://monitoring-agent:5006
+      - AUTH_URL=https://auth-service:5000
+    depends_on:
+      - validation-agent
+      - monitoring-agent
+      - auth-service
