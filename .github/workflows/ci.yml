@@ -54,9 +54,9 @@ jobs:
           fetch-depth: 0
       - name: Remove Binary Files
         run: |
-          git rm --cached "src/agents/denial_prediction_agent/model.pkl"
-          git rm --cached "Agentic AI Connector for UHC Prior Authorization API.pdf"
-          git commit -m "Remove binary files for HF Spaces deployment"
+          git rm --cached "src/agents/denial_prediction_agent/model.pkl" || true
+          git rm --cached "Agentic AI Connector for UHC Prior Authorization API.pdf" || true
+          git commit -m "Remove binary files for HF Spaces deployment" || true
       - name: Push to Hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
