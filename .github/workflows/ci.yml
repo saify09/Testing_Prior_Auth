@@ -52,8 +52,13 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      - name: Remove Binary Files
+        run: |
+          git rm --cached "src/agents/denial_prediction_agent/model.pkl"
+          git rm --cached "Agentic AI Connector for UHC Prior Authorization API.pdf"
+          git commit -m "Remove binary files for HF Spaces deployment"
       - name: Push to Hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          git push --force https://SaifuddinHanif:$HF_TOKEN@huggingface.co/spaces/SaifuddinHanif/UHC-Auth-Prior-Prototype-Agent main
+          git push --force https://SaifuddinHanif:$HF_TOKEN@huggingface.co/spaces/SaifuddinHanif/UHC-Auth-Prior-Prototype-Agent HEAD:main
