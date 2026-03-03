@@ -50,15 +50,22 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Remove Binary Files
+
+      - name: Remove binary files from disk
         run: |
-          git rm --cached "src/agents/denial_prediction_agent/model.pkl" || true
-          git rm --cached "Agentic AI Connector for UHC Prior Authorization API.pdf" || true
-          git commit -m "Remove binary files for HF Spaces deployment" || true
-      - name: Push to Hub
+          rm -f "src/agents/denial_prediction_agent/model.pkl"
+          find . -name "*.pdf" -delete
+
+      - name: Configure Git identity
+        run: |
+          git config --global user.email "ci@github.com"
+          git config --global user.name "CI Deploy Bot"
+
+      - name: Create orphan branch and push to HF
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          git push --force https://SaifuddinHanif:$HF_TOKEN@huggingface.co/spaces/SaifuddinHanif/UHC-Auth-Prior-Prototype-Agent HEAD:main
+          git checkout --orphan hf-deploy
+          git add -A
+          git commit -m "Deploy to HF Spaces"
+          git push --force https://SaifuddinHanif:$HF_TOKEN@huggingface.co/spaces/SaifuddinHanif/UHC-Auth-Prior-Prototype-Agent hf-deploy:main
