@@ -54,7 +54,10 @@ jobs:
       - name: Remove binary files from disk
         run: |
           rm -f "src/agents/denial_prediction_agent/model.pkl"
+          rm -rf "Files/"
           find . -name "*.pdf" -delete
+          find . -name "*.mp4" -delete
+          find . -name "*.docx" -delete
 
       - name: Configure Git identity
         run: |
