@@ -1,3 +1,12 @@
+---
+title: UHC Auth Prior Prototype Agent
+emoji: 🏥
+colorFrom: blue
+colorTo: green
+sdk: docker
+pinned: false
+---
+
 # HIPAA-Compliant AI Prior Authorization System
 
 ## Overview

@@ -1,0 +1,2297 @@
+--- Contents of AI_Prior_Auth_PRD_Shared.pdf ---
+Product Requirements Document  
+AI-Driven Prior Authorization System 
+End-to-End Workflow with Human-in-the-Loop & HIPAA Compliance 
+ 
+Version 1.0 
+Date February 2026 
+Status Draft 
+Owner Product Management 
+Classification Confidential 
+Last Updated February 9, 2026 
+  
+Table of Contents 
+• 1. Executive Summary 
+• 2. Product Overview 
+• 3. Business Requirements 
+• 4. Functional Requirements 
+• 5. Technical Requirements 
+• 6. Non-Functional Requirements 
+• 7. User Experience & Interface Design 
+• 8. Security & Compliance Requirements 
+• 9. Integration Requirements 
+• 10. Success Metrics & KPIs 
+• 11. Implementation Roadmap 
+• 12. Appendices 
+ 
+ 
+UX/UI Link - https://claude.ai/public/artifacts/1d693e58-3f38-4c9f-a598-
+d7fa1f50a131  
+ 
+  
+1. Executive Summary 
+1.1 Purpose 
+This Product Requirements Document (PRD) defines the comprehensive requirements for 
+an AI-driven Prior Authorization (PA) system designed to streamline healthcare 
+authorization processes while maintaining HIPAA compliance and human oversight at 
+critical decision points. 
+  
+2. Product Overview 
+2.1 Product Vision 
+To create the most efficient, accurate, and compliant prior authorization platform in 
+healthcare, leveraging AI to eliminate administrative burden while ensuring clinical 
+appropriateness and patient safety through intelligent human oversight. 
+2.2 Target Users 
+User Role Primary Goals Key Pain Points 
+Healthcare Providers Quick approvals, minimal 
+admin 
+Long wait times, multiple 
+systems 
+Clinical Reviewers (RN) Efficient case review, clear 
+guidance 
+Manual data gathering, 
+unclear criteria 
+Medical Directors Quality oversight, 
+compliance 
+Inconsistent decisions, 
+audit gaps 
+Prior Auth Coordinators Process efficiency, tracking Manual data entry, status 
+inquiries 
+Patients/Members Fast decisions, transparency Treatment delays, lack of 
+visibility 
+System Administrators System reliability, security Complex integrations, audit 
+requirements 
+2.3 Key Features Overview 
+• Intelligent Document Processing: OCR, NLP extraction, auto-classification of PA 
+requests 
+• AI Clinical Criteria Engine: Automated matching against MCG/InterQual guidelines 
+• Risk-Based Routing: Smart triage to auto-approve or human review queues 
+• Clinical Review Workbench: Unified interface for RN/MD review with AI 
+recommendations 
+• Real-Time Status Portal: Provider and member self-service tracking 
+• HIPAA Compliance Framework: Built-in encryption, audit logging, access controls 
+• Appeals Management: Automated tracking, deadline management, outcomes analysis 
+• Analytics & Reporting: Dashboards for performance, quality, and compliance metrics 
+  
+3. Business Requirements 
+3.1 Business Objectives 
+• BR-001: Reduce PA processing costs by 60% within 12 months of launch 
+• BR-002: Achieve minimum 70% auto-approval rate for routine medical requests 
+• BR-003: Decrease average turnaround time to <24 hours for 80% of requests 
+• BR-004: Improve provider satisfaction scores from 42% to 85%+ 
+• BR-005: Reduce appeals rate from 15-20% to <8% through improved accuracy 
+• BR-006: Generate positive ROI within 18 months of deployment 
+• BR-007: Scale to process 1M+ PAs annually without linear cost increase 
+3.2 Regulatory & Compliance Requirements 
+• BR-101: Achieve and maintain HIPAA compliance for all PHI processing 
+• BR-102: Meet state-specific PA turnaround time requirements (varies by state) 
+• BR-103: Comply with CMS prior authorization requirements for Medicare Advantage 
+• BR-104: Support NCQA accreditation standards for UM programs 
+• BR-105: Enable audit trail for regulatory examinations (DOI, CMS, etc.) 
+• BR-106: Maintain Business Associate Agreements with all vendors 
+• BR-107: Support member appeal rights per state and federal regulations 
+  
+4. Functional Requirements 
+4.1 Request Intake & Validation 
+• FR-001: Accept PA requests via multiple channels: EHR integration (HL7/FHIR), secure 
+portal, fax, EDI 278 
+• FR-002: Perform OCR on faxed/scanned documents with 98%+ accuracy for typed text 
+• FR-003: Extract key data elements: patient demographics, diagnosis codes, procedure 
+codes, clinical notes 
+• FR-004: Validate member eligibility in real-time against payer systems 
+• FR-005: Check for duplicate/existing PAs for same patient/service 
+• FR-006: Auto-request missing information with templated outreach to providers 
+• FR-007: Generate unique PA tracking number upon successful intake 
+4.2 AI Clinical Criteria Matching 
+• FR-101: Match diagnosis and procedure codes against evidence-based medical 
+necessity criteria (MCG, InterQual) 
+• FR-102: Analyze submitted clinical documentation for supporting evidence 
+• FR-103: Check medication requests against formulary and step therapy requirements 
+• FR-104: Identify missing clinical information required for determination 
+• FR-105: Generate confidence score (0-100%) for approval/denial recommendation 
+• FR-106: Provide explainable rationale for AI recommendation with supporting citations 
+• FR-107: Flag edge cases and ambiguous scenarios for human review 
+4.3 Human-in-the-Loop Review 
+• FR-201: Route cases to appropriate review queue based on complexity and risk score 
+• FR-202: Present AI recommendation with full supporting evidence to clinical reviewer 
+• FR-203: Enable reviewer to accept, modify, or override AI recommendation 
+• FR-204: Require physician review for all proposed denials before finalization 
+• FR-205: Support peer-to-peer consultation requests from treating providers 
+• FR-206: Allow reviewers to annotate cases with clinical rationale 
+• FR-207: Track reviewer agreement/disagreement rates with AI for quality monitoring 
+4.4 Decision Communication 
+• FR-301: Generate determination letters with clinical rationale and appeal rights 
+• FR-302: Deliver notifications via provider portal, secure email, and postal mail 
+• FR-303: Update EHR systems with authorization details via HL7/FHIR 
+• FR-304: Send member notifications in plain language with next steps 
+• FR-305: Provide alternative treatment options for denials when applicable 
+• FR-306: Include appeal instructions and deadlines in all denial communications 
+• FR-307: Support multi-language notifications (English, Spanish minimum) 
+4.5 Appeals Management 
+• FR-401: Accept appeals via portal, fax, mail with automated acknowledgment 
+• FR-402: Track regulatory deadlines (30-day standard, 72-hour expedited) 
+• FR-403: Route to independent reviewer (different from initial determination) 
+• FR-404: Provide access to complete original case file for appeal review 
+• FR-405: Support external review process when internal appeals exhausted 
+• FR-406: Analyze appeal outcomes to identify systemic issues and AI improvement 
+opportunities 
+• FR-407: Generate appeal overturn reports for quality monitoring 
+  
+5. Technical Requirements 
+5.1 System Architecture 
+• TR-001: Microservices-based architecture for independent scaling and deployment 
+• TR-002: Cloud-native deployment (AWS/Azure/GCP) with multi-region availability 
+• TR-003: API-first design with RESTful and GraphQL endpoints 
+• TR-004: Event-driven architecture for real-time processing and notifications 
+• TR-005: Containerized deployment (Docker/Kubernetes) for portability 
+• TR-006: Service mesh for secure inter-service communication 
+• TR-007: Separate data plane for PHI processing with enhanced security controls 
+5.2 AI/ML Platform 
+• TR-101: NLP models for clinical document understanding (transformer-based) 
+• TR-102: Classification models for medical necessity determination 
+• TR-103: OCR engine with handwriting recognition capabilities 
+• TR-104: Named entity recognition for extracting ICD-10, CPT, NDC codes 
+• TR-105: Confidence scoring algorithm with calibrated probabilities 
+• TR-106: Model versioning and A/B testing framework 
+• TR-107: Continuous learning pipeline with human feedback incorporation 
+• TR-108: Explainable AI (XAI) framework for transparency and auditability 
+• TR-109: Bias detection and fairness monitoring across demographics 
+5.3 Data Management 
+• TR-201: HIPAA-compliant data lake for all PA-related data 
+• TR-202: Separate databases for PHI vs. de-identified analytics 
+• TR-203: Data retention policies aligned with state/federal requirements (7-10 years) 
+• TR-204: Automated data backup with point-in-time recovery 
+• TR-205: Data encryption at rest (AES-256) and in transit (TLS 1.3) 
+• TR-206: Data anonymization/de-identification for AI training datasets 
+• TR-207: Master data management for providers, facilities, and payers 
+5.4 Integration Requirements 
+• TR-301: HL7 v2.x interface for legacy EHR systems 
+• TR-302: FHIR R4 API for modern healthcare interoperability 
+• TR-303: X12 EDI 278 support for payer-to-payer communication 
+• TR-304: Secure FTP/SFTP for batch file exchange 
+• TR-305: Single Sign-On (SSO) via SAML 2.0 and OAuth 2.0 
+• TR-306: Webhooks for real-time event notifications 
+• TR-307: ETL pipelines for claims system integration 
+  
+6. Non-Functional Requirements 
+6.1 Performance Requirements 
+Requirement ID Metric Target 
+NFR-001 API Response Time (p95) <500ms 
+NFR-002 Document Processing Time <2 minutes per document 
+NFR-003 AI Inference Time <5 seconds per case 
+NFR-004 System Availability 99.9% uptime 
+NFR-005 Concurrent Users Support 1,000+ 
+simultaneous users 
+NFR-006 Throughput Process 10,000+ PAs per 
+day 
+NFR-007 Database Query 
+Performance 
+<100ms for 95% of queries 
+NFR-008 Page Load Time <3 seconds for web portal 
+6.2 Security Requirements 
+• NFR-101: Multi-factor authentication (MFA) for all user access 
+• NFR-102: Role-based access control (RBAC) with principle of least privilege 
+• NFR-103: Audit logging of all PHI access with immutable records 
+• NFR-104: Automated session timeout after 15 minutes of inactivity 
+• NFR-105: Encryption of all PHI at rest (AES-256) and in transit (TLS 1.3) 
+• NFR-106: Annual penetration testing and vulnerability assessments 
+• NFR-107: Security Information and Event Management (SIEM) integration 
+• NFR-108: Incident response plan with <1 hour breach notification 
+• NFR-109: Data loss prevention (DLP) controls for PHI 
+• NFR-110: Regular security awareness training for all users 
+6.3 Scalability Requirements 
+• NFR-201: Horizontal scaling for all stateless services 
+• NFR-202: Auto-scaling based on queue depth and CPU/memory utilization 
+• NFR-203: Database sharding strategy for multi-tenant architecture 
+• NFR-204: CDN for static assets and global performance 
+• NFR-205: Message queue for asynchronous processing (Kafka/RabbitMQ) 
+• NFR-206: Caching strategy (Redis/Memcached) for frequently accessed data 
+• NFR-207: Load balancing across multiple availability zones 
+6.4 Reliability Requirements 
+• NFR-301: Disaster recovery with RPO <1 hour, RTO <4 hours 
+• NFR-302: Automated failover for critical services 
+• NFR-303: Data replication across multiple geographic regions 
+• NFR-304: Circuit breaker pattern for external service dependencies 
+• NFR-305: Graceful degradation when non-critical services unavailable 
+• NFR-306: Comprehensive error handling and logging 
+• NFR-307: Health check endpoints for all services 
+6.5 Usability Requirements 
+• NFR-401: WCAG 2.1 Level AA compliance for accessibility 
+• NFR-402: Support for major browsers: Chrome, Firefox, Safari, Edge (latest 2 versions) 
+• NFR-403: Mobile-responsive design for tablet and smartphone access 
+• NFR-404: Maximum 3 clicks to complete common workflows 
+• NFR-405: Inline help and contextual guidance throughout application 
+• NFR-406: Consistent UI/UX patterns across all modules 
+• NFR-407: User satisfaction score >85% in usability testing 
+  
+7. User Experience & Interface Design 
+7.1 Design Principles 
+• Simplicity: Minimize cognitive load with clean, intuitive interfaces 
+• Efficiency: Reduce clicks and keystrokes for frequent tasks 
+• Transparency: Make AI recommendations explainable and visible 
+• Consistency: Use standard patterns and terminology throughout 
+• Accessibility: Ensure usability for all abilities and devices 
+• Trust: Build confidence through clear communication and reliability 
+7.2 Key User Workflows 
+Provider Portal - Submit PA Request 
+1. 1. Login with SSO credentials 
+2. 2. Search for patient by name/ID or scan insurance card 
+3. 3. Select service/procedure requiring authorization 
+4. 4. Upload supporting clinical documentation (drag-and-drop) 
+5. 5. Review auto-populated form with extracted data 
+6. 6. Submit request and receive confirmation with tracking number 
+7. 7. View estimated decision timeframe based on case complexity 
+Clinical Reviewer Workbench - Review Case 
+8. 1. Login to secure workbench with MFA 
+9. 2. View prioritized queue sorted by urgency and deadline 
+10. 3. Click on case to see AI recommendation with confidence score 
+11. 4. Review patient history, diagnosis, clinical notes in unified view 
+12. 5. Expand AI rationale section to see supporting evidence and citations 
+13. 6. Click "View Guidelines" to see applicable medical necessity criteria 
+14. 7. Make determination: Approve / Deny / Pend for more info 
+15. 8. For denials: physician counter-signature required before finalization 
+16. 9. Add clinical notes (auto-saved every 30 seconds) 
+17. 10. Click "Finalize Decision" to generate determination letter 
+Member Portal - Check Status 
+18. 1. Login with member ID and DOB or create account 
+19. 2. View dashboard with all active and recent PA requests 
+20. 3. Click on specific PA to see detailed status timeline 
+21. 4. View determination letter and appeal instructions if applicable 
+22. 5. Initiate appeal directly from portal if desired 
+23. 6. Download PDF copies of all communications 
+24. 7. Set up text/email notifications for status updates 
+7.3 Wireframe Descriptions 
+The following wireframe descriptions outline the key screens and UI components. Detailed 
+mockups and prototypes will be developed during the design phase. 
+Dashboard - Clinical Reviewer 
+Layout: Three-column responsive design 
+ 
+• Left Sidebar (20%): Navigation menu, user profile, quick stats (cases assigned, 
+completed today, overdue) 
+• Center Panel (55%): Case queue with filters (urgency, deadline, type), sortable 
+columns (patient, service, received date, deadline, AI score), color-coded priority 
+indicators 
+• Right Panel (25%): AI insights summary, recent activity feed, compliance alerts, 
+performance metrics 
+Case Detail View - Clinical Reviewer 
+• Header Section: Patient demographics, insurance info, urgency badge, days remaining 
+until deadline 
+• Tab Navigation: Clinical Summary | Documentation | AI Analysis | Guidelines | History 
+• Clinical Summary Tab: Diagnosis codes with descriptions, requested 
+procedure/medication, relevant vitals and labs, timeline of treatment 
+• AI Analysis Tab: Confidence score (large visual gauge), recommendation 
+(approve/deny), supporting rationale with expandable evidence, conflicting factors if 
+any, similar cases comparison 
+• Action Panel (Bottom): Decision buttons (Approve/Deny/Pend), clinical notes text 
+area, peer-to-peer request button, save draft button 
+7.4 Visual Design Specifications 
+Color Palette 
+Color Hex Code Usage 
+Primary Blue #1976D2 Primary actions, headers, 
+key UI elements 
+Secondary Blue #4FC3F7 Secondary actions, links, 
+highlights 
+Success Green #4CAF50 Approvals, positive status, 
+success messages 
+Warning Orange #FF9800 Pending items, warnings, 
+attention needed 
+Error Red #F44336 Denials, errors, critical 
+alerts 
+Neutral Gray #757575 Body text, borders, disabled 
+states 
+Typography 
+• Primary Font: Inter or Roboto (clean, readable, web-optimized) 
+• Headings: Bold, sizes: H1=24px, H2=20px, H3=16px 
+• Body Text: Regular, 14px, line-height 1.5 
+• Small Text: Regular, 12px for captions and metadata 
+• Monospace Font: Roboto Mono for ICD/CPT codes and technical data 
+UI Components Library 
+• Buttons: Primary (filled), Secondary (outlined), Text buttons, Icon buttons, Disabled 
+states 
+• Forms: Text inputs, dropdowns, checkboxes, radio buttons, file upload (drag-and-drop), 
+date pickers 
+• Cards: Elevated cards with shadows, Outlined cards, Interactive hover states 
+• Tables: Sortable columns, Filterable rows, Pagination, Row selection, Export 
+functionality 
+• Modals: Confirmation dialogs, Form modals, Full-screen overlays for complex tasks 
+• Notifications: Toast messages (success, info, warning, error), Banner alerts, In-app 
+notification center 
+• Progress Indicators: Linear progress bars, Circular loaders, Step indicators for multi-
+stage workflows 
+  
+8. Security & Compliance Requirements 
+8.1 HIPAA Compliance Controls 
+HIPAA Safeguard Control ID Implementation 
+Access Control SC-001 Unique user IDs, MFA, 
+automatic logoff, encryption 
+controls 
+Audit Controls SC-002 Immutable audit logs, user 
+attribution, timestamping, 
+log retention 
+Integrity Controls SC-003 Data integrity validation, 
+checksums, digital 
+signatures 
+Transmission Security SC-004 TLS 1.3 for all 
+transmissions, VPN for 
+remote access 
+Authentication SC-005 Multi-factor authentication, 
+password complexity 
+requirements 
+Encryption SC-006 AES-256 at rest, TLS 1.3 in 
+transit, key rotation every 
+90 days 
+Minimum Necessary SC-007 RBAC limiting PHI access to 
+job requirements 
+Workstation Security SC-008 Screen locks, endpoint 
+encryption, antivirus 
+software 
+Device Controls SC-009 Mobile device management 
+(MDM), remote wipe 
+capability 
+Breach Notification SC-010 Automated breach 
+detection, notification 
+within 60 days 
+8.2 Data Privacy Requirements 
+• PR-001: De-identification of PHI for all analytics and AI training datasets 
+• PR-002: Data masking in non-production environments (no real PHI in dev/test) 
+• PR-003: Patient consent tracking for data usage beyond 
+treatment/payment/operations 
+• PR-004: Right to access: members can download their PA history within 30 days 
+• PR-005: Right to rectification: process for correcting inaccurate data 
+• PR-006: Data portability in machine-readable format (JSON/CSV) 
+• PR-007: Privacy impact assessments for new features processing PHI 
+8.3 AI Governance & Ethics 
+• AG-001: Model transparency: document training data sources, features, and limitations 
+• AG-002: Bias testing across race, age, gender, and geographic demographics 
+• AG-003: Regular fairness audits with statistical parity analysis 
+• AG-004: Human oversight required for all high-risk determinations (denials, high-cost 
+services) 
+• AG-005: Explainability: AI must provide clinical rationale for all recommendations 
+• AG-006: Model drift monitoring with alerts for performance degradation 
+• AG-007: Version control for all AI models with rollback capability 
+• AG-008: Third-party validation of AI accuracy at least annually 
+• AG-009: Clear escalation path for AI errors or unexpected behavior 
+• AG-010: AI decision appeals process separate from standard PA appeals 
+  
+9. Integration Requirements 
+9.1 EHR Integration 
+• Epic: HL7 v2.5, FHIR R4, pended orders API, patient context sharing 
+• Cerner: HL7 v2.x, CCL custom scripts for PA status updates 
+• Meditech: HL7 v2.3, custom interface engine configuration 
+• Allscripts: HL7 v2.5, web services API for bidirectional communication 
+• Generic FHIR: FHIR R4 endpoints for any FHIR-enabled EHR 
+9.2 Payer System Integration 
+• INT-201: Eligibility verification via X12 270/271 or payer API 
+• INT-202: Claims system integration for authorization sync 
+• INT-203: Pharmacy Benefit Manager (PBM) integration for formulary checks 
+• INT-204: Care management system integration for high-risk member identification 
+• INT-205: Provider directory integration for credentialing validation 
+9.3 External Data Sources 
+• INT-301: MCG Care Guidelines API for evidence-based criteria 
+• INT-302: InterQual criteria engine integration 
+• INT-303: CMS NCD/LCD database for Medicare coverage determinations 
+• INT-304: FDA drug database for medication information 
+• INT-305: NCQA HEDIS measures for quality alignment 
+• INT-306: Social determinants of health (SDOH) data vendors 
+  
+10. Success Metrics & KPIs 
+10.1 Operational Metrics 
+Metric Definition Target Measurement 
+Frequency 
+Avg. TAT Time from 
+submission to 
+decision 
+<24 hrs (routine) Daily 
+Auto-Approval Rate % of PAs auto-
+approved by AI 
+>70% Weekly 
+Throughput Total PAs processed 
+per day 
+10,000+ Daily 
+SLA Compliance % of PAs decided 
+within regulatory 
+timeframe 
+>98% Daily 
+Queue Wait Time Time in human 
+review queue 
+<4 hours Hourly 
+Pended Rate % of PAs requiring 
+additional info 
+<15% Weekly 
+First Contact 
+Resolution 
+% resolved without 
+back-and-forth 
+>80% Weekly 
+System Uptime Availability during 
+business hours 
+99.9% Real-time 
+10.2 Quality Metrics 
+• KPI-201AI Accuracy: % of AI recommendations matching human reviewer decision 
+(Target: >92%) 
+• KPI-202Appeal Rate: % of determinations appealed (Target: <8%) 
+• KPI-203Overturn Rate: % of appeals resulting in reversed decision (Target: <10%) 
+• KPI-204Inter-Rater Reliability: Agreement between reviewers on same cases (Target: 
+>90%) 
+• KPI-205Clinical Guideline Adherence: % of decisions aligned with MCG/InterQual 
+(Target: 100%) 
+• KPI-206Documentation Completeness: % of cases with all required clinical info (Target: 
+>95%) 
+10.3 User Experience Metrics 
+• KPI-301Provider Satisfaction (NPS): Net Promoter Score from provider survey (Target: 
+>50) 
+• KPI-302Member Satisfaction: % satisfied/very satisfied (Target: >85%) 
+• KPI-303Portal Adoption: % of providers using self-service portal (Target: >75%) 
+• KPI-304Task Completion Rate: % of workflows completed without errors (Target: 
+>95%) 
+• KPI-305Time on Task: Average time to complete PA submission (Target: <5 minutes) 
+• KPI-306Support Ticket Volume: Helpdesk tickets per 1000 PAs (Target: <20) 
+10.4 Business Impact Metrics 
+• KPI-401Cost per PA: Total operating cost / # of PAs processed (Target: <$15) 
+• KPI-402Cost Savings: Annual savings vs. previous manual process (Target: $10M+) 
+• KPI-403FTE Efficiency: PAs processed per FTE (Target: >2,500/month) 
+• KPI-404Provider Abrasion Reduction: % decrease in provider complaints (Target: 
+>60%) 
+• KPI-405Revenue Cycle Impact: Days saved in claims processing (Target: 2-3 days) 
+• KPI-406ROI: Return on investment (Target: Positive ROI within 18 months) 
+ 
+11.5 Go-Live Strategy 
+• Pilot Phase: Launch with 1-2 provider groups and limited PA types, monitor closely 
+• Phased Rollout: Gradually expand to additional providers, geographies, and service 
+types 
+• Parallel Run: Run new system alongside legacy for 30 days to ensure accuracy 
+• Training Program: Comprehensive training for all user roles 2 weeks before go-live 
+• Support Model: Enhanced support during first 90 days with dedicated hotline 
+• Communication Plan: Regular updates to stakeholders, providers, and members 
+  
+12. Appendices 
+12.1 Glossary 
+• AI: Artificial Intelligence 
+• API: Application Programming Interface 
+• BAA: Business Associate Agreement 
+• CPT: Current Procedural Terminology 
+• EHR: Electronic Health Record 
+• FHIR: Fast Healthcare Interoperability Resources 
+• HIPAA: Health Insurance Portability and Accountability Act 
+• HITL: Human-in-the-Loop 
+• HL7: Health Level Seven International 
+• ICD-10: International Classification of Diseases, 10th Revision 
+• MCG: Milliman Care Guidelines 
+• NLP: Natural Language Processing 
+• OCR: Optical Character Recognition 
+• PA: Prior Authorization 
+• PBM: Pharmacy Benefit Manager 
+• PHI: Protected Health Information 
+• RBAC: Role-Based Access Control 
+• ROI: Return on Investment 
+• SDOH: Social Determinants of Health 
+• SLA: Service Level Agreement 
+• TAT: Turnaround Time 
+12.2 Assumptions 
+• Payers will provide access to eligibility and claims data via API or file exchange 
+• Providers will have EHR systems capable of HL7 or FHIR integration 
+• Sufficient volume of historical PA data available for AI model training (100,000+ cases) 
+• Clinical staff available for model validation and ongoing review 
+• Regulatory approval obtained for AI-assisted clinical decision making 
+• Budget approved for third-party clinical criteria licenses (MCG, InterQual) 
+• Cloud infrastructure costs estimated at $50,000-$75,000/month for production 
+• External vendors (EHR, criteria engines) will meet integration timelines 
+12.3 Dependencies 
+• Legal approval of AI governance framework and accountability model 
+• Completion of HIPAA risk assessment and mitigation plan 
+• Procurement of clinical criteria licenses (MCG/InterQual) 
+• Execution of Business Associate Agreements with all vendors 
+• IT infrastructure readiness (network, cloud accounts, security tools) 
+• Availability of clinical SMEs for criteria configuration 
+• Provider and member communication campaigns prior to launch 
+• Integration readiness from EHR vendors and payers 
+12.4 Risks & Mitigation 
+Risk Impact Mitigation Strategy 
+AI model inaccuracy High Extensive training data, 
+continuous monitoring, 
+human oversight 
+Data breach/HIPAA violation Critical Multi-layer security, 
+encryption, regular audits, 
+incident response plan 
+Provider adoption resistance Medium Change management, 
+training, clear value 
+demonstration 
+Integration delays Medium Phased approach, backup 
+manual processes, vendor 
+SLAs 
+Regulatory non-compliance High Legal review, compliance 
+officer, external audits 
+System performance issues Medium Load testing, auto-scaling, 
+performance monitoring 
+12.5 References 
+• CMS Prior Authorization and Utilization Management Final Rule (2024) 
+• NCQA Standards for Utilization Management (UM) 
+• American Medical Association Prior Authorization Physician Survey (2024) 
+• CAQH Index Report on Healthcare Administrative Costs (2023) 
+• HIPAA Security Rule Technical Safeguards (45 CFR § 164.312) 
+• HL7 FHIR Implementation Guide for Prior Authorization 
+• FDA Guidance on Clinical Decision Support Software 
+• NIH All of Us Research Program - Health Equity in AI 
+ 
+ 
+— End of Document — 
+--------------------------------------------------
+--- Contents of Field_Level_Specifications.pdf ---
+Field-Level Specifications  
+AI-Driven Prior Authorization System 
+Complete Field Definitions & Payer Integration Specifications 
+ 
+Version 1.0 
+Date February 2026 
+Document Type Technical Specifications 
+Classification Confidential 
+  
+Table of Contents 
+• Section 1: Provider Portal - Field Specifications 
+• Section 2: Clinical Reviewer Workbench - Field Specifications 
+• Section 3: Member Portal - Field Specifications 
+• Section 4: Administrative Dashboard - Field Specifications 
+• Section 5: Payer Integration Specifications 
+• Section 6: API Field Mappings 
+• Section 7: Data Validation Rules 
+• Section 8: Error Handling & Messages 
+  
+Section 1: Provider Portal - Field Specifications 
+1.1 PA Request Submission Form 
+This form allows providers to submit new prior authorization requests. 
+ 
+1.1.1 Patient Information Section 
+Field 
+Name 
+Field Type Max Length Required Validation 
+Rules 
+Example 
+First Name Text 50 Yes Alpha only, no 
+special chars 
+Sarah 
+Last Name Text 50 Yes Alpha only, no 
+special chars 
+Johnson 
+Middle 
+Initial 
+Text 1 No Alpha only, 
+single 
+character 
+M 
+Date of 
+Birth 
+Date 
+Picker 
+MM/DD/YYYY Yes Must be past 
+date, age 0-
+120 
+03/15/1978 
+Gender Dropdown N/A Yes M, F, X, U 
+(Unknown) 
+F 
+Member 
+ID 
+Text 20 Yes Alphanumeric, 
+auto-validated 
+MB12345678 
+Insurance 
+Group # 
+Text 15 No Alphanumeric GRP987654 
+Phone 
+Number 
+Phone 14 Yes US format 
+(XXX) XXX-
+XXXX 
+(555) 123-4567 
+Email 
+Address 
+Email 100 No Valid email 
+format 
+sarah.j@email.com 
+Address 
+Line 1 
+Text 100 Yes Street address 123 Main Street 
+ 
+1.1.2 Clinical Information Section 
+Field Name Field Type Max 
+Lengt
+h 
+Require
+d 
+Validation Rules Example 
+Primary Diagnosis ICD-10 
+Lookup 
+10 Yes Valid ICD-10 code with 
+description 
+M54.5 - 
+Low back 
+pain 
+Secondary 
+Diagnosis 1 
+ICD-10 
+Lookup 
+10 No Valid ICD-10 code M51.26 - 
+Disc 
+disorder 
+Secondary ICD-10 10 No Valid ICD-10 code M79.1 - 
+Diagnosis 2 Lookup Myalgia 
+Procedure/Servic
+e Code 
+CPT 
+Lookup 
+10 Yes Valid CPT/HCPCS code 72148 - 
+MRI 
+lumbar 
+spine 
+Service Type Dropdow
+n 
+N/A Yes Predefined list Diagnostic 
+Imaging 
+Place of Service Dropdow
+n 
+N/A Yes Standard POS codes Outpatien
+t Hospital 
+Urgency Level Radio 
+Button 
+N/A Yes Routine/Urgent/Emergen
+t 
+Routine 
+Estimated Cost Currency 10 No Numeric, 2 decimal places $1,250.00 
+Quantity/Units Number 5 Yes Integer, min 1 1 
+Frequency Text 50 No Free text Once 
+Duration of 
+Treatment 
+Text 50 No Free text 1 day 
+Clinical Summary Text Area 5000 Yes Min 100 characters Patient 
+presents 
+with... 
+Relevant Lab 
+Results 
+Text Area 2000 No Free text WBC: 7.2, 
+ESR: 15 
+Prior Treatments Text Area 2000 Yes Document conservative 
+care 
+PT x 12 
+sessions, 
+NSAIDs 
+Treating Physician 
+Name 
+Text 100 Yes Auto-populated from 
+profile 
+Dr. Robert 
+Smith 
+ 
+1.1.3 Document Upload Section 
+Field Name Field Type Max Length Required Validation 
+Rules 
+Example 
+Clinical 
+Notes 
+File Upload 25MB Yes PDF, JPG, 
+PNG, TIFF 
+clinical_notes.pdf 
+Lab Results File Upload 25MB No PDF, JPG, 
+PNG, TIFF 
+labs_02092026.pdf 
+Imaging 
+Reports 
+File Upload 25MB No PDF, JPG, 
+PNG, TIFF, 
+DICOM 
+xray_lumbar.pdf 
+Prescription File Upload 25MB No PDF, JPG, 
+PNG 
+prescription.pdf 
+Other 
+Supporting 
+Docs 
+File Upload 25MB No PDF, JPG, 
+PNG, TIFF 
+additional_info.pdf 
+ 
+1.1.4 Provider/Facility Information Section 
+Field Name Field Type Max Length Required Validation Example 
+Rules 
+Requesting 
+Provider NPI 
+Text 10 Yes Valid 10-
+digit NPI 
+1234567890 
+Provider 
+Name 
+Text 100 Yes Auto-
+populated 
+Dr. Robert 
+Smith 
+Provider 
+Specialty 
+Dropdown N/A Yes Standard 
+taxonomy 
+codes 
+Orthopedic 
+Surgery 
+Provider Tax 
+ID 
+Text 20 Yes Valid EIN 
+format 
+12-3456789 
+Provider 
+Phone 
+Phone 14 Yes US format (555) 987-
+6543 
+Provider Fax Phone 14 Yes US format (555) 987-
+6544 
+Facility 
+Name 
+Text 100 Yes Auto-
+populated or 
+manual 
+St. Mary's 
+Medical 
+Center 
+Facility NPI Text 10 Yes Valid 10-
+digit NPI 
+9876543210 
+Facility 
+Address 
+Text 200 Yes Full address 456 Hospital 
+Blvd, City, ST 
+  
+1.2 PA Status Tracking Dashboard 
+Displays all PA requests submitted by the provider with real-time status updates. 
+ 
+Field Name Field Type Data Source Display Format User Actions 
+PA Number Read-only 
+Text 
+System 
+Generated 
+PA-YYYY-NNNNNN Click to view 
+details 
+Patient Name Read-only 
+Text 
+Patient record Last, First M. Click to view 
+Service 
+Description 
+Read-only 
+Text 
+CPT 
+description 
+Full text None 
+Status Badge/Tag Workflow 
+engine 
+Color-coded label None 
+Submission 
+Date 
+Read-only 
+Date 
+Audit log MM/DD/YYYY HH:MM 
+AM/PM 
+Sort/Filter 
+Decision Date Read-only 
+Date 
+Decision 
+record 
+MM/DD/YYYY Sort/Filter 
+Decision Badge/Tag Decision 
+record 
+Approved/Denied/Pended None 
+Assigned 
+Reviewer 
+Read-only 
+Text 
+Assignment 
+system 
+Name or "AI Auto-
+Approved" 
+None 
+Days Pending Calculated System 
+calculation 
+Integer + "days" Sort 
+Urgency Badge/Tag Submission 
+data 
+Routine/Urgent/Emergent Filter 
+Auth Number Read-only 
+Text 
+Authorization 
+system 
+Alphanumeric Copy to 
+clipboard 
+Valid Through Read-only 
+Date 
+Authorization 
+record 
+MM/DD/YYYY None 
+Download 
+Letter 
+Button Document 
+storage 
+PDF icon + "Download" Click to 
+download 
+Appeal Status Badge/Tag Appeals 
+system 
+No Appeal/In 
+Appeal/Resolved 
+Click to view 
+  
+Section 2: Clinical Reviewer Workbench - Field 
+Specifications 
+2.1 Review Queue Dashboard 
+Field Name Field Type Max 
+Lengt
+h 
+Required Validation Rules Example 
+PA Number Hyperlink 15 System Click to open case PA-2026-
+001234 
+Patient Name Text 100 System Display only, PHI 
+masked per RBAC 
+Johnson, Sarah 
+Member ID 
+(Masked) 
+Text 20 System Last 4 digits only: 
+****5678 
+****5678 
+Service Type Text 100 System CPT description MRI Lumbar 
+Spine 
+Diagnosis Text 150 System Primary ICD-10 + 
+description 
+M54.5 - Low 
+back pain 
+Urgency Badge N/A System Color-coded: 
+Red=Emergent, 
+Orange=Urgent 
+Urgent 
+Deadline Calculate
+d 
+N/A System Hours or days 
+remaining 
+6 hours 
+Received 
+Date/Time 
+DateTime N/A System MM/DD/YYYY 
+HH:MM AM/PM 
+02/09/2026 
+08:15 AM 
+Days in Queue Calculate
+d 
+N/A System Auto-calculated from 
+received date 
+0.5 days 
+AI Confidence 
+Score 
+Percentag
+e 
+N/A AI Engine Color-coded: Green 
+>90%, Yellow 70-
+90%, Red <70% 
+94% 
+AI 
+Recommendatio
+n 
+Badge N/A AI Engine Approve/Deny/Revie
+w Required 
+Approve 
+Assigned To Text N/A System Reviewer name or 
+"Unassigned" 
+Dr. Emily 
+Parker 
+Payer Text 50 System Insurance company 
+name 
+UnitedHealthca
+re 
+Priority Score Number N/A System Calculated urgency + 
+deadline weight 
+87 
+Documentation 
+Complete 
+Checkbox N/A AI/Syste
+m 
+Green check or red X ✓ 
+Action Button Button N/A User Click to "Review 
+Case" 
+Review 
+ 
+2.2 Case Detail Review Page 
+2.2.1 Patient Demographics Panel 
+Field Name Field Type Source Editable Display Format 
+Full Name Text Submission + 
+Eligibility 
+No Last, First Middle 
+Date of Birth Date Submission + 
+Eligibility 
+No MM/DD/YYYY (Age: XX) 
+Gender Text Submission + 
+Eligibility 
+No Male/Female/Other 
+Member ID Text Submission + 
+Eligibility 
+No Full ID visible to 
+reviewer 
+Insurance 
+Group 
+Text Eligibility 
+System 
+No Group number + name 
+Payer Name Text Eligibility 
+System 
+No Full payer name 
+Coverage 
+Status 
+Badge Eligibility 
+System 
+No Active/Inactive/Pending 
+Effective Date Date Eligibility 
+System 
+No MM/DD/YYYY 
+Termination 
+Date 
+Date Eligibility 
+System 
+No MM/DD/YYYY or "N/A" 
+Primary Care 
+Provider 
+Text Payer System No PCP name + NPI 
+Contact Phone Phone Submission No (XXX) XXX-XXXX 
+Email Email Submission No member@email.com 
+ 
+2.2.2 Clinical Summary Panel 
+Field Name Field Type Source Editable Display Format 
+Primary 
+Diagnosis 
+Text + Code Submission + 
+AI extraction 
+No ICD-10: M54.5 - 
+Low back pain 
+Secondary 
+Diagnoses 
+List Submission + 
+AI extraction 
+No Bullet list of 
+ICD-10 codes 
+Requested 
+Service 
+Text + Code Submission No CPT: 72148 - 
+MRI lumbar 
+spine 
+Service 
+Category 
+Badge AI Classification No Diagnostic 
+Imaging 
+Clinical 
+Summary 
+Rich Text Submission + 
+AI extraction 
+No Full narrative 
+with 
+highlighting 
+Chief Complaint Text AI extraction No Extracted from 
+clinical notes 
+History of 
+Present Illness 
+Text AI extraction No AI-summarized 
+timeline 
+Physical Exam 
+Findings 
+Text AI extraction No Relevant exam 
+findings 
+Relevant Labs Structured Data AI extraction No Table of lab 
+values 
+Relevant 
+Imaging 
+Text AI extraction No Prior imaging 
+results 
+Medications List AI extraction No Current 
+medications list 
+Allergies List AI extraction No Drug/food 
+allergies 
+Prior 
+Treatments 
+Timeline AI extraction No Visual timeline 
+of treatments 
+Treatment 
+Duration 
+Text AI extraction No Weeks/months 
+of conservative 
+care 
+Clinical 
+Rationale 
+Text Provider 
+submission 
+No Provider's 
+justification 
+  
+2.2.3 AI Analysis Panel 
+Field Name Field Type Source Editable Display Format 
+AI 
+Recommendation 
+Badge AI Engine No APPROVE/DENY/REVIEW 
+REQUIRED 
+Confidence Score Percentage + 
+Gauge 
+AI Engine No 94% with visual gauge 
+Risk Score Number + 
+Badge 
+AI Engine No Low/Medium/High risk 
+Rationale 
+Summary 
+Rich Text AI Engine No 2-3 sentence explanation 
+Criteria Matched Checklist AI Engine No MCG/InterQual criteria 
+met 
+Missing Criteria Checklist AI Engine No Red flags or gaps 
+Documentation 
+Completeness 
+Percentage AI Engine No 95% complete 
+Missing 
+Documentation 
+List AI Engine No Items needed for full 
+review 
+Supporting 
+Evidence 
+Expandable 
+List 
+AI Engine No Clinical guideline citations 
+Conflicting 
+Factors 
+List AI Engine No Factors arguing against 
+approval 
+Similar Cases 
+Analyzed 
+Number AI Engine No 2,847 cases 
+Similar Cases 
+Outcome 
+Chart AI Engine No Pie chart: 89% approved 
+Model Version Text AI Engine No v2.3.1 
+Processing Time Duration AI Engine No 3.2 seconds 
+ 
+2.2.4 Clinical Guidelines Panel 
+Field Name Field Type Source Editable Display Format 
+Applicable 
+Guideline 
+Text AI + Rules 
+Engine 
+No MCG: Imaging 
+for Low Back 
+Pain 
+Guideline 
+Version 
+Text Guidelines DB No 28th Edition, 
+2026 
+Criteria Text Rich Text Guidelines DB No Full criteria 
+with 
+highlighting 
+Must Meet (All) Checklist AI Analysis No Required 
+criteria with 
+status 
+Should Meet 
+(Any) 
+Checklist AI Analysis No Supporting 
+criteria with 
+status 
+Exclusion Checklist AI Analysis No Red flags 
+Criteria checked 
+View Full 
+Guideline 
+Button/Link Guidelines DB No Link to full 
+PDF/webpage 
+ 
+2.2.5 Decision/Action Panel 
+Field Name Field Type Required Validation Rules Notes 
+Decision Radio Button Yes Must select one: 
+Approve/Deny/Pend 
+Primary 
+action 
+Clinical Notes Text Area No Max 5000 chars, auto-save 
+every 30 sec 
+Reviewer 
+rationale 
+Denial Reason Dropdown If Deny Must select from 
+predefined list 
+Standardized 
+reasons 
+Denial Sub-
+Reason 
+Dropdown If Deny Cascading based on reason More specific 
+code 
+Alternative 
+Treatment 
+Text Area If Deny Max 1000 chars Suggested 
+alternatives 
+Pend Reason Dropdown If Pend Must select reason Why more 
+info needed 
+Information 
+Requested 
+Checklist If Pend Must select at least one Specific items 
+needed 
+Approved 
+Quantity 
+Number If Approve Must be <= requested 
+quantity 
+Units 
+approved 
+Approved 
+Duration 
+Number + 
+Unit 
+If Approve Days/weeks/months/visits Auth validity 
+period 
+Auth Start 
+Date 
+Date Picker If Approve Cannot be past date When auth 
+begins 
+Auth End 
+Date 
+Date Picker If Approve Must be after start date When auth 
+expires 
+Require MD 
+Review 
+Checkbox If Deny Auto-checked for denials Physician co-
+signature 
+  
+Section 3: Member Portal - Field Specifications 
+3.1 Member Dashboard 
+Field Name Field Type Source Editable Display Format 
+PA Number Hyperlink PA System No PA-2026-001234 
+Service 
+Description 
+Text PA System No Plain language description 
+Provider Name Text PA System No Dr. Robert Smith 
+Status Badge PA System No Submitted/In 
+Review/Approved/Denied 
+Submitted 
+Date 
+Date PA System No MM/DD/YYYY 
+Decision Date Date PA System No MM/DD/YYYY or 
+"Pending" 
+Decision Badge PA System No Approved/Denied/More 
+Info Needed 
+Authorization 
+Number 
+Text PA System No AUTH-123456 (if 
+approved) 
+Valid Through Date PA System No MM/DD/YYYY (if 
+approved) 
+View Letter Button Document 
+System 
+No Download PDF button 
+ 
+3.2 Appeal Submission Form 
+Field Name Field Type Max 
+Length 
+Required Validation Rules Example 
+Original PA 
+Number 
+Text 
+(Auto) 
+15 Yes Auto-populated 
+from context 
+PA-2026-001234 
+Appeal 
+Type 
+Radio 
+Button 
+N/A Yes Standard (30 day) 
+/ Expedited (72 
+hr) 
+Expedited 
+Expedited 
+Justification 
+Text Area 1000 If 
+Expedited 
+Explain urgent 
+medical need 
+Condition 
+worsening... 
+Reason for 
+Appeal 
+Text Area 5000 Yes Min 100 
+characters 
+New clinical 
+information... 
+Supporting 
+Documents 
+File 
+Upload 
+50MB 
+total 
+No PDF, JPG, PNG new_mri_results.pdf 
+Provider 
+Statement 
+File 
+Upload 
+25MB No PDF signed by MD provider_letter.pdf 
+Contact 
+Phone 
+Phone 14 Yes US format (555) 123-4567 
+Preferred 
+Contact 
+Method 
+Dropdown N/A Yes Phone/Email/Mail Email 
+  
+Section 4: Administrative Dashboard - Field Specifications 
+4.1 Analytics Dashboard Fields 
+Metric/Field 
+Name 
+Calculation Method Update 
+Frequency 
+Display Type Drill-Down 
+Available 
+Total PAs 
+Received 
+Count of all 
+submissions 
+Real-time Large number 
++ trend 
+Yes - by date 
+range 
+PAs in Queue Count of pending status Real-time Number + 
+urgency 
+breakdown 
+Yes - view 
+queue 
+Average TAT Avg(decision_date - 
+received_date) 
+Hourly Hours + days Yes - by 
+service type 
+Auto-Approval 
+Rate 
+Count(AI auto-
+approved) / Total * 
+100 
+Daily Percentage + 
+chart 
+Yes - by 
+criteria 
+AI Accuracy Count(AI=Reviewer) / 
+Total reviewed * 100 
+Daily Percentage + 
+gauge 
+Yes - by case 
+type 
+Appeal Rate Count(appeals) / Total 
+decisions * 100 
+Daily Percentage + 
+trend 
+Yes - view 
+appeals 
+Overturn Rate Count(overturned) / 
+Total appeals * 100 
+Daily Percentage Yes - by 
+reason 
+Approval Rate Count(approved) / 
+Total decisions * 100 
+Daily Percentage + 
+chart 
+Yes - by payer 
+Denial Rate Count(denied) / Total 
+decisions * 100 
+Daily Percentage + 
+chart 
+Yes - by 
+reason 
+Pended Rate Count(pended) / Total 
+submissions * 100 
+Daily Percentage Yes - by 
+reason 
+SLA 
+Compliance 
+Count(within_deadline) 
+/ Total * 100 
+Real-time Percentage + 
+alert 
+Yes - 
+violations 
+Reviewer 
+Productivity 
+Cases per FTE per day Daily Number + 
+leaderboard 
+Yes - by 
+reviewer 
+Cost per PA Total operating cost / # 
+PAs 
+Monthly Currency + 
+trend 
+Yes - cost 
+breakdown 
+Provider 
+Satisfaction 
+NPS score from surveys Monthly Score (-100 to 
+100) 
+Yes - 
+comments 
+System Uptime Uptime minutes / Total 
+minutes * 100 
+Real-time Percentage + 
+status 
+Yes - incidents 
+  
+Section 5: Payer Integration Specifications 
+This section details integration requirements and field mappings for major payer systems. 
+Each payer has unique data exchange requirements, API specifications, and business rules. 
+ 
+5.1 UnitedHealthcare (UnitedHealth Group) 
+5.1.1 Integration Overview 
+Integration Method API (REST) + EDI X12 278 
+API Base URL https://api.uhc.com/prior-auth/v2/ 
+Authentication OAuth 2.0 Client Credentials 
+Data Format JSON (API) / X12 EDI (Batch) 
+Eligibility Verification Separate API: /eligibility/v1/verify 
+Real-time Response Yes (for urgent/expedited cases) 
+Batch Processing Yes (nightly EDI 278 file exchange via 
+SFTP) 
+SLA for Response Urgent: 24hrs, Standard: 72hrs 
+  
+ 
+5.1.2 UHC API Field Mappings 
+Our 
+Field 
+Name 
+UHC API Field Data Type Requir
+ed 
+Special Notes 
+Member 
+ID 
+subscriber.memberId String(20) Yes UHC format: 3-letter 
+prefix + 9 digits 
+First 
+Name 
+subscriber.firstName String(50) Yes Uppercase per UHC spec 
+Last 
+Name 
+subscriber.lastName String(50) Yes Uppercase per UHC spec 
+Date of 
+Birth 
+subscriber.dateOfBirth Date(YYY
+Y-MM-
+DD) 
+Yes ISO 8601 format 
+Gender subscriber.gender String(1) Yes M/F/U only 
+Primary 
+Diagnosi
+s 
+clinicalInfo.primaryDiagnosis.c
+ode 
+String(10) Yes ICD-10 format without 
+decimal 
+Diagnosi
+s 
+Descripti
+on 
+clinicalInfo.primaryDiagnosis.d
+escription 
+String(20
+0) 
+No Auto-populated from 
+code 
+Procedu
+re Code 
+serviceRequest.procedureCode String(10) Yes CPT or HCPCS Level II 
+Procedu serviceRequest.modifiers Array[Stri No CPT modifiers if 
+re 
+Modifier 
+ng] applicable 
+Service 
+Type 
+serviceRequest.serviceType String(50) Yes UHC category codes 
+Place of 
+Service 
+serviceRequest.placeOfService String(2) Yes CMS POS codes (01-99) 
+Provider 
+NPI 
+renderingProvider.npi String(10) Yes Must be in UHC network 
+Provider 
+Tax ID 
+renderingProvider.taxId String(9) Yes EIN without dashes 
+Facility 
+NPI 
+serviceLocation.npi String(10) Yes Facility NPI if applicable 
+Request
+ed Start 
+Date 
+serviceRequest.requestedStart
+Date 
+Date Yes Cannot be >30 days in 
+past 
+Request
+ed Units 
+serviceRequest.requestedUnits Integer Yes Min 1 
+Clinical 
+Summar
+y 
+clinicalInfo.summary String(50
+00) 
+Yes Free text narrative 
+Urgency 
+Level 
+authorizationRequest.priority String Yes ROUTINE/URGENT/EME
+RGENCY 
+Attachm
+ent 
+Referenc
+es 
+attachments Array[Obj
+ect] 
+No Document IDs if 
+uploaded separately 
+Submitt
+er Name 
+submitter.name String(10
+0) 
+Yes Office/practice name 
+Submitt
+er Phone 
+submitter.phone String(10) Yes Digits only, no formatting 
+Submitt
+er Fax 
+submitter.fax String(10) No Digits only 
+Request 
+ID 
+authorizationRequest.requestI
+d 
+String(50) Yes Our internal PA number 
+Request 
+Date 
+authorizationRequest.request
+Date 
+DateTime Yes ISO 8601 with timezone 
+Expecte
+d 
+Respons
+e Date 
+N/A - UHC calculates N/A N/A UHC returns in response 
+ 
+5.1.3 UHC Response Field Mappings 
+UHC Response Field Our 
+Field/Acti
+on 
+Data Type Notes 
+authorizationResponse.status Decision 
+Status 
+String APPROVED/DENIED/PENDED/I
+N_REVIEW 
+authorizationResponse.authNu
+mber 
+Authoriza
+tion 
+Number 
+String(20
+) 
+Store if APPROVED 
+authorizationResponse.effectiv
+eDate 
+Auth Start 
+Date 
+Date When auth is valid from 
+authorizationResponse.expirati
+onDate 
+Auth End 
+Date 
+Date When auth expires 
+authorizationResponse.approv
+edUnits 
+Approved 
+Quantity 
+Integer May differ from requested 
+authorizationResponse.denialR
+eason 
+Denial 
+Reason 
+Code 
+String(10
+) 
+UHC standardized codes 
+authorizationResponse.denialD
+escription 
+Denial 
+Reason 
+Text 
+String(50
+0) 
+Human-readable 
+authorizationResponse.pendRe
+ason 
+Pend 
+Reason 
+String(50
+0) 
+What info is needed 
+authorizationResponse.additio
+nalInfo 
+Notes to 
+Provider 
+String(20
+00) 
+Special instructions 
+authorizationResponse.reviewe
+dBy 
+UHC 
+Reviewer 
+ID 
+String(50
+) 
+For audit trail 
+ 
+5.1.4 UHC Business Rules 
+• Member eligibility MUST be verified before submission (separate API call required) 
+• For OptumRx pharmacy benefits: use separate OptumRx API endpoint for medication 
+PAs 
+• Imaging procedures require specific medical necessity documentation per UHC 
+guidelines 
+• Out-of-network providers require additional justification and may auto-deny 
+• Behavioral health services route to Optum Behavioral Health - different API 
+• Transplant and specialty procedures require case manager assignment 
+• Appeals must be submitted within 60 days of denial date 
+• Peer-to-peer requests can be made via separate endpoint within 24hrs of denial 
+  
+5.2 Aetna (CVS Health) 
+5.2.1 Integration Overview 
+Integration Method FHIR R4 API + EDI X12 278 
+API Base URL https://api.aetna.com/fhir/r4/ 
+Authentication OAuth 2.0 + SMART on FHIR 
+Data Format FHIR Bundle resources 
+Eligibility Verification FHIR Coverage resource 
+Real-time Response Yes (CoverageEligibilityResponse) 
+Batch Processing Yes (EDI 278 via SFTP) 
+SLA for Response Urgent: 24hrs, Standard: 5 business days 
+  
+ 
+5.2.2 Aetna FHIR Resource Mappings 
+Our Field 
+Name 
+UHC API Field Data Type Requir
+ed 
+Special Notes 
+Member 
+ID 
+Patient.identifier[type=MB].valu
+e 
+String Yes Aetna member ID 
+First 
+Name 
+Patient.name[0].given[0] String Yes FHIR HumanName 
+Last 
+Name 
+Patient.name[0].family String Yes FHIR HumanName 
+Date of 
+Birth 
+Patient.birthDate Date Yes YYYY-MM-DD 
+Gender Patient.gender Code Yes male/female/other/u
+nknown 
+Primary 
+Diagnosi
+s 
+Condition.code.coding[0].code CodeableCo
+ncept 
+Yes ICD-10 with system 
+URL 
+Procedur
+e Code 
+ServiceRequest.code.coding[0].c
+ode 
+CodeableCo
+ncept 
+Yes CPT with system URL 
+Service 
+Category 
+ServiceRequest.category CodeableCo
+ncept 
+Yes SNOMED CT 
+preferred 
+Priority ServiceRequest.priority Code Yes routine/urgent/asap
+/stat 
+Provider 
+NPI 
+Practitioner.identifier[type=NPI
+].value 
+String Yes 10-digit NPI 
+Organiza
+tion NPI 
+Organization.identifier[type=NP
+I].value 
+String Yes Facility NPI 
+Coverage 
+Info 
+Coverage.id reference Reference Yes Link to Coverage 
+resource 
+Supporti
+ng Info 
+ServiceRequest.supportingInfo Array[Refer
+ence] 
+No References to 
+DocumentReference 
+Clinical DocumentReference.content.atta Base64 Yes Embedded or 
+Notes chment.data referenced 
+Reason 
+Code 
+ServiceRequest.reasonCode CodeableCo
+ncept 
+Yes Clinical justification 
+Request
+ed 
+Period 
+Start 
+ServiceRequest.occurrence[x].st
+art 
+DateTime Yes When service needed 
+Request
+ed 
+Period 
+End 
+ServiceRequest.occurrence[x].en
+d 
+DateTime No Duration if applicable 
+Quantity ServiceRequest.quantityQuantit
+y 
+Quantity Yes Units with UCUM 
+code 
+Request
+er 
+ServiceRequest.requester Reference Yes Reference to 
+Practitioner 
+Intent ServiceRequest.intent Code Yes Always "order" for 
+PA 
+ 
+5.2.3 Aetna Business Rules 
+• FHIR Bundle must include: Patient, Coverage, Condition, ServiceRequest, Practitioner 
+resources 
+• CVS Caremark handles all pharmacy PAs - separate integration required 
+• Behavioral health routed to Aetna Behavioral Health - use specialty code BH 
+• Medical policy lookup available via separate API: /MedicalPolicy/v1/search 
+• Pre-service vs. post-service determination impacts routing and SLA 
+• Aetna requires attestation that patient has been informed of PA requirement 
+• Clinical attachments must be PDF, max 10MB per file, max 10 files 
+• Auto-approval available for certain preventive services and generic medications 
+• Network status checked automatically - out-of-network requires medical director 
+review 
+  
+5.3 CVS Health - Caremark (Pharmacy) 
+5.3.1 Integration Overview 
+Integration Method NCPDP Telecom + Proprietary API 
+API Base URL https://api.caremark.com/pharmacy-
+pa/v3/ 
+Authentication API Key + HMAC signature 
+Data Format JSON with NCPDP field mappings 
+Formulary Check Real-time formulary API: 
+/formulary/v2/check 
+Real-time Response Yes (for electronic PA - ePA) 
+Batch Processing Yes (NCPDP batch files) 
+SLA for Response Standard: 72hrs, Urgent/Expedited: 24hrs 
+  
+ 
+5.3.2 CVS Caremark Field Mappings (Pharmacy PA) 
+Our Field 
+Name 
+UHC API Field Data Type Require
+d 
+Special Notes 
+Member ID patient.memberId String(20) Yes Caremark member ID 
+(RxBin/RxPCN/RxGr
+p) 
+RxBin patient.rxBin String(6) Yes Bank Identification 
+Number 
+RxPCN patient.rxPcn String(10) Yes Processor Control 
+Number 
+RxGroup patient.rxGroup String(15) Yes Group identifier 
+Patient 
+Name 
+patient.name String(100) Yes First Last format 
+Date of 
+Birth 
+patient.dateOfBirth Date Yes YYYY-MM-DD 
+Gender patient.gender String(1) Yes M/F 
+Medication 
+NDC 
+medication.ndcCode String(11) Yes 11-digit NDC (with 
+dashes removed) 
+Medication 
+Name 
+medication.productName String(100) Yes Brand or generic 
+name 
+Strength medication.strength String(50) Yes e.g., "20mg" 
+Dosage 
+Form 
+medication.dosageForm String(50) Yes Tablet, capsule, 
+injection, etc. 
+Quantity prescription.quantity Decimal Yes Number of units 
+Days 
+Supply 
+prescription.daysSupply Integer Yes 30, 60, 90 typical 
+Directions prescription.directions String(500) Yes SIG - prescriber 
+instructions 
+Refills prescription.refills Integer Yes Number of refills 
+authorized 
+Diagnosis 
+Code 
+clinicalInfo.diagnosisCode String(10) Yes ICD-10 for indication 
+Prescriber 
+NPI 
+prescriber.npi String(10) Yes Prescribing physician 
+NPI 
+Prescriber 
+Name 
+prescriber.name String(100) Yes Dr. First Last 
+Prescriber 
+Phone 
+prescriber.phone String(10) Yes Digits only 
+Pharmacy 
+NPI 
+pharmacy.npi String(10) Yes Dispensing pharmacy 
+NPI 
+Pharmacy 
+NCPDP 
+pharmacy.ncpdpId String(7) Yes Pharmacy chain code 
+Prior 
+Medication
+s Tried 
+clinicalInfo.priorMedicatio
+ns 
+Array[String
+] 
+Yes Step therapy 
+documentation 
+Clinical 
+Rationale 
+clinicalInfo.justification String(5000
+) 
+Yes Why medication is 
+medically necessary 
+ 
+5.3.3 CVS Caremark Business Rules 
+• Formulary check REQUIRED before PA submission - use /formulary/v2/check endpoint 
+• Step therapy: Must document failure/intolerance of preferred alternatives 
+• Quantity limits: Check MaxQuantity field in formulary response 
+• Specialty medications (>$600/month): Route to Caremark Specialty division 
+• Prior authorization for brand when generic available: Requires generic trial 
+documentation 
+• Biosimilar preference program: Must try biosimilar before brand biologic 
+• Age/gender edits: Some medications require specific age/gender criteria 
+• Duplicate therapy check: System flags if patient on similar medication 
+• Auto-approval for refills: If original PA approved and within validity period 
+• Clinical guidelines embedded in response: Use recommendedAlternatives field 
+  
+5.4 Cigna Health 
+5.4.1 Integration Overview 
+Integration Method Proprietary REST API + X12 278 
+API Base URL https://api.cigna.com/authorization/v2/ 
+Authentication OAuth 2.0 + mTLS 
+Eligibility Check /member/v1/eligibility 
+Real-time Decisions Yes (for select procedures) 
+Batch Processing Yes (EDI nightly) 
+SLA Urgent: 24hrs, Standard: 48hrs 
+  
+ 
+5.5 Humana 
+5.5.1 Integration Overview 
+Integration Method HL7 v2.5 + X12 278 EDI 
+API Base URL https://availity.humana.com/pa/ 
+Authentication Availity portal credentials + API key 
+Eligibility Check Real-time via Availity 
+Real-time Decisions Limited (Gold Card providers only) 
+Batch Processing Yes (preferred method) 
+SLA Standard: 5 business days 
+  
+ 
+5.6 Blue Cross Blue Shield (BCBS) 
+NOTE: BCBS is a federation of 35+ independent companies. Integration varies by plan. This 
+section covers common Anthem BCBS requirements (largest member). 
+ 
+Integration Method Availity platform + Plan-specific APIs 
+API Base URL (Anthem) https://api.anthem.com/prior-auth/v1/ 
+Authentication Availity SSO + OAuth 2.0 
+Eligibility Check BlueCard system for cross-plan eligibility 
+Real-time Decisions Yes (via eviCore for imaging/cardiology) 
+Batch Processing Yes (X12 278) 
+Special Routing eviCore, AIM, NIA for specialty services 
+SLA Varies by plan: 24hrs-5 days 
+  
+  
+Section 6: Cross-Payer API Field Mappings 
+This section provides a consolidated view of how common PA fields map across different 
+payer APIs, enabling efficient multi-payer integration with a single internal data model. 
+ 
+Internal 
+Field 
+UHC API Aetna FHIR CVS 
+Caremark 
+Cigna API Comm
+on 
+Data 
+Type 
+membe
+r_id 
+subscriber.memb
+erId 
+Patient.identifier.val
+ue 
+patient.mem
+berId 
+member.id String
+(20) 
+first_na
+me 
+subscriber.firstNa
+me 
+Patient.name.given patient.first
+Name 
+member.first
+Name 
+String
+(50) 
+last_na
+me 
+subscriber.lastNa
+me 
+Patient.name.family patient.lastN
+ame 
+member.last
+Name 
+String
+(50) 
+dob subscriber.dateOf
+Birth 
+Patient.birthDate patient.date
+OfBirth 
+member.birt
+hDate 
+Date(I
+SO) 
+gender subscriber.gender Patient.gender patient.gend
+er 
+member.sex Code(
+M/F/
+U) 
+primary
+_dx 
+clinicalInfo.prima
+ryDiagnosis.code 
+Condition.code clinicalInfo.d
+iagnosisCode 
+diagnosis[0].
+code 
+ICD-
+10 
+proced
+ure_co
+de 
+serviceRequest.pr
+ocedureCode 
+ServiceRequest.code medication.n
+dcCode 
+service.proce
+dureCode 
+CPT/
+NDC 
+provide
+r_npi 
+renderingProvide
+r.npi 
+Practitioner.identifie
+r 
+prescriber.n
+pi 
+provider.npi String
+(10) 
+urgency authorizationReq
+uest.priority 
+ServiceRequest.prio
+rity 
+request.urge
+ncyLevel 
+request.urge
+ncy 
+Enum 
+clinical
+_notes 
+clinicalInfo.summ
+ary 
+DocumentReference clinicalInfo.j
+ustification 
+clinical.narra
+tive 
+Text(
+5000) 
+request
+ed_dat
+e 
+serviceRequest.re
+questedStartDate 
+ServiceRequest.occu
+rrence 
+prescription.
+fillDate 
+service.start
+Date 
+Date 
+quantit
+y 
+serviceRequest.re
+questedUnits 
+ServiceRequest.qua
+ntity 
+prescription.
+quantity 
+service.quant
+ity 
+Intege
+r 
+place_o
+f_servic
+e 
+serviceRequest.pl
+aceOfService 
+ServiceRequest.locat
+ion 
+N/A 
+(pharmacy) 
+service.locati
+on 
+Code(
+POS) 
+auth_n
+umber 
+authorizationRes
+ponse.authNumbe
+r 
+ClaimResponse.preA
+uthRef 
+response.ap
+provalNumb
+er 
+authorization
+.number 
+String
+(20) 
+decisio
+n 
+authorizationRes
+ponse.status 
+ClaimResponse.outc
+ome 
+response.dec
+ision 
+decision.stat
+us 
+Enum 
+effectiv authorizationRes ClaimResponse.addI response.eff authorization Date 
+e_date ponse.effectiveDa
+te 
+tem.servicedDate ectiveDate .startDate 
+expirati
+on_dat
+e 
+authorizationRes
+ponse.expiration
+Date 
+ClaimResponse.addI
+tem.servicedPeriod.
+end 
+response.exp
+irationDate 
+authorization
+.endDate 
+Date 
+denial_
+reason 
+authorizationRes
+ponse.denialReas
+on 
+ClaimResponse.erro
+r 
+response.de
+nialReason 
+decision.reas
+on 
+Code 
+approv
+ed_unit
+s 
+authorizationRes
+ponse.approvedU
+nits 
+ClaimResponse.addI
+tem.quantity 
+response.ap
+provedQuant
+ity 
+authorization
+.approvedUni
+ts 
+Intege
+r 
+review
+er_id 
+authorizationRes
+ponse.reviewedB
+y 
+ClaimResponse.revi
+ewer 
+response.rev
+iewerId 
+decision.revi
+ewer 
+String
+(50) 
+  
+Section 7: Data Validation Rules 
+7.1 Field-Level Validation Rules 
+Field Name Validation Rule Error Message Error Code 
+Member ID Regex: ^[A-Z0-
+9]{8,20}$ 
+Invalid Member ID 
+format 
+VAL-001 
+Date of Birth Must be past date, 
+age 0-120 
+Invalid date of birth VAL-002 
+Phone Number US format: (XXX) 
+XXX-XXXX 
+Invalid phone 
+number 
+VAL-003 
+Email RFC 5322 email 
+validation 
+Invalid email 
+address 
+VAL-004 
+ICD-10 Code Valid ICD-10-CM 
+code in current year 
+Invalid diagnosis 
+code 
+VAL-005 
+CPT Code Valid CPT/HCPCS in 
+current year 
+Invalid procedure 
+code 
+VAL-006 
+NPI Valid 10-digit NPI, 
+Luhn check 
+Invalid NPI VAL-007 
+Tax ID Valid EIN format XX-
+XXXXXXX 
+Invalid Tax ID VAL-008 
+Zip Code US format: XXXXX or 
+XXXXX-XXXX 
+Invalid zip code VAL-009 
+File Size Max 25MB per file File exceeds size 
+limit 
+VAL-010 
+File Type Allowed: PDF, JPG, 
+PNG, TIFF 
+Unsupported file 
+type 
+VAL-011 
+Quantity Integer > 0, max 999 Invalid quantity VAL-012 
+Clinical Summary Min 100 characters, 
+max 5000 
+Clinical summary 
+too short/long 
+VAL-013 
+Date Range Start date < End 
+date 
+Invalid date range VAL-014 
+Future Date Check Cannot be >30 days 
+in future 
+Date too far in 
+future 
+VAL-015 
+Required Field Cannot be null or 
+empty 
+Required field 
+missing 
+VAL-016 
+Cross-Field: 
+Age/Service 
+Age appropriate for 
+service 
+Service not age-
+appropriate 
+VAL-017 
+Duplicate Check No duplicate PA for 
+same service in 30 
+days 
+Duplicate PA exists VAL-018 
+Network Check Provider must be in-
+network 
+Out-of-network 
+provider 
+VAL-019 
+Eligibility Check Member must have 
+active coverage 
+Member not eligible VAL-020 
+  
+Section 8: Error Handling & Messages 
+8.1 User-Facing Error Messages 
+Error Code Scenario User Message Suggested Action 
+ERR-100 Member not found 
+in eligibility system 
+We cannot verify 
+this member ID. 
+Please check the ID 
+and try again. 
+Verify Member ID 
+with insurance card 
+ERR-101 Member coverage 
+inactive/terminated 
+This member's 
+coverage is not 
+currently active. 
+Please contact the 
+payer. 
+Check coverage 
+effective dates 
+ERR-102 Duplicate PA 
+submission 
+A prior 
+authorization for 
+this service already 
+exists (PA-XXXX). 
+Review existing PA 
+or wait for decision 
+ERR-103 Provider not in 
+network 
+This provider is out-
+of-network. PA may 
+require additional 
+documentation. 
+Verify network 
+status or provide 
+justification 
+ERR-104 Missing required 
+clinical 
+documentation 
+Please upload 
+clinical notes 
+supporting medical 
+necessity. 
+Upload required 
+documents 
+ERR-105 File upload failed Document upload 
+failed. Please try 
+again or use a 
+smaller file. 
+Check file size 
+(<25MB) and format 
+ERR-106 Invalid ICD-10 code The diagnosis code 
+entered is not valid 
+for the current year. 
+Verify ICD-10 code 
+or select from 
+lookup 
+ERR-107 Service not covered This service is not 
+covered under the 
+member's plan. 
+Review plan 
+benefits or contact 
+payer 
+ERR-108 Prior treatment 
+required 
+Plan requires 
+documented trial of 
+[TREATMENT] 
+before this service. 
+Document prior 
+conservative care 
+ERR-109 Session timeout Your session has 
+expired. Please log 
+in again. 
+Re-authenticate and 
+resume 
+ERR-110 System unavailable The PA system is 
+temporarily 
+unavailable. Please 
+try again shortly. 
+Wait and retry, or 
+submit via fax 
+ERR-111 Payer API error Unable to reach Request will process 
+[PAYER] systems. 
+Your request has 
+been queued. 
+when connection 
+restored 
+ERR-112 Age restriction 
+violation 
+This service has age 
+restrictions. 
+Member must be 
+[AGE RANGE]. 
+Verify member age 
+or select alternative 
+service 
+ERR-113 Quantity exceeds 
+plan limit 
+Requested quantity 
+exceeds plan 
+maximum of [X] 
+units. 
+Reduce quantity or 
+provide clinical 
+justification 
+ERR-114 Missing peer-to-
+peer 
+Payer requires peer-
+to-peer discussion 
+before denial 
+appeal. 
+Contact payer to 
+schedule peer-to-
+peer 
+ 
+8.2 API Integration Error Codes 
+Error Code Scenario User Message Suggested Action 
+API-001 Authentication 
+failure 
+Invalid OAuth token 
+or credentials 
+Refresh token and 
+retry 
+API-002 Rate limit exceeded Too many requests 
+to payer API 
+Implement 
+exponential backoff 
+API-003 Malformed request Request body does 
+not match API 
+schema 
+Validate request 
+against schema 
+API-004 Payer system 
+timeout 
+No response from 
+payer within 30 
+seconds 
+Retry with 
+exponential backoff 
+API-005 Unknown payer 
+response 
+Payer returned 
+unexpected 
+response structure 
+Log for manual 
+review 
+API-006 Certificate expired mTLS certificate 
+expired or invalid 
+Renew certificate 
+API-007 Unsupported payer 
+version 
+Payer API version 
+no longer supported 
+Upgrade integration 
+to new version 
+API-008 Field mapping error Required payer field 
+missing in our data 
+Check field mapping 
+configuration 
+API-009 Character encoding 
+issue 
+Special characters 
+not properly 
+encoded 
+Apply UTF-8 
+encoding 
+API-010 Webhook delivery 
+failed 
+Unable to deliver 
+status update to 
+provider 
+Queue for retry 
+ 
+ 
+— End of Field-Level Specifications Document — 
+--------------------------------------------------
